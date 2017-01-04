@@ -3,3 +3,19 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.product--container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product--item {
+  flex: 1;
+  text-align: center;
+}
+
+.product--item  > figure {
+  text-align: center;
+}
