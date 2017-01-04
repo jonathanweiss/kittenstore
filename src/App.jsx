@@ -3,7 +3,7 @@ import React from 'react';
 import Navigation from './components/Navigation';
 import Category from './components/Category';
 
-const App = props => {
+const App = (props) => {
   const { cats, catfood } = props.data.products;
 
   return (

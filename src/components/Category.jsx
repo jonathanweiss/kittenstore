@@ -1,20 +1,18 @@
 import React from 'react';
 
-const renderProduct = (text, link, cb) => {
-  return (
-    <div key={link} className="product--item">
-      <figure>
-        <img src={cb()} alt={text} /> 
-        <figcaption>{text}</figcaption>
-      </figure>
-    </div>
-  );
-}
+const renderProduct = (text, link, cb) => (
+  <div key={link} className="product--item">
+    <figure>
+      <img src={cb()} alt={text} />
+      <figcaption>{text}</figcaption>
+    </figure>
+  </div>
+);
 
-const Category = props => {
+const Category = (props) => {
   const cb = props.desc === 'Cats' ?
     () => `https://placekitten.com/200/200?image=${Math.round(Math.random() * 16)}` :
-    () => `https://dummyimage.com/200x200/999/000.png`;
+    () => 'https://dummyimage.com/200x200/999/000.png';
 
   return (
     <div>
