@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+
 import './index.css';
 
+import data from './mockData';
+
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+  <App data={data} />, // eslint-disable-line
+  document.getElementById('root'),
 );
