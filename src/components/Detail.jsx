@@ -218,6 +218,7 @@ const Detail = (props) => {
   const catIndex = props.data.findIndex(cat => cat.slug === props.slug);
   const catData = props.data[catIndex];
   const quote = getRandomQuote();
+  const price = 50 + Math.round(Math.random() * 100);
 
   return (
     <div className="columns">
@@ -233,7 +234,7 @@ const Detail = (props) => {
               <p>{quote.text}</p>
               <cite>&ndash; {quote.person}</cite>
             </blockquote>
-            <p><span className="label label-success">${50 + Math.round(Math.random() * 100)}.99</span></p>
+            <p><span className={`label ${price < 100 ? 'label-success' : 'label-danger'}`}>${price}.99</span></p>
           </div>
           <div className="card-footer">
             <a href="/" className="btn btn-primary">Buy</a>
