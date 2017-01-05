@@ -9,6 +9,11 @@ body {
   color: #fff;
 }
 
+.empty .icon-search,
+.empty .icon-cart {
+  font-size: 3em;
+}
+
 .product--container {
   display: flex;
   flex-direction: row;

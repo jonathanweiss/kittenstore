@@ -7,6 +7,7 @@ const List = (props) => {
   return (
     <div className="columns">
       <div className="column col-12">
+        <h2>All &ldquo;{cats[0].race}&rdquo; cats</h2>
         <table className="table table-striped table-hover">
           <thead>
             <tr>
