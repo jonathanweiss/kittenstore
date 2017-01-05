@@ -15,7 +15,7 @@ const Category = (props) => {
     () => 'https://dummyimage.com/200x200/999/000.png';
 
   return (
-    <div>
+    <div className="columns">
       <h2>{props.desc}</h2>
       <div className="product--container">
         { props.items.map(entry => renderProduct(entry.text, entry.link, provideImageSource)) }

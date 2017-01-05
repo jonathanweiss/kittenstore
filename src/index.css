@@ -3,6 +3,12 @@ body {
   font-family: sans-serif;
 }
 
+.btn.btn-link-active {
+  background: #5764c6;
+  border-color: #4452c0;
+  color: #fff;
+}
+
 .product--container {
   display: flex;
   flex-direction: row;
