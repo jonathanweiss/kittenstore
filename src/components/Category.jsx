@@ -3,7 +3,7 @@ import React from 'react';
 const renderProduct = (text, link, provideImageSource) => (
   <div key={link} className="product--item">
     <figure>
-      <img src={provideImageSource()} alt={text} />
+      <img width="200" height="200" src={provideImageSource()} alt={text} />
       <figcaption>{text}</figcaption>
     </figure>
   </div>
