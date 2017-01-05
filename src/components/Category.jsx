@@ -1,16 +1,16 @@
 import React from 'react';
 
-const renderProduct = (text, link, cb) => (
+const renderProduct = (text, link, provideImageSource) => (
   <div key={link} className="product--item">
     <figure>
-      <img src={cb()} alt={text} />
+      <img src={provideImageSource()} alt={text} />
       <figcaption>{text}</figcaption>
     </figure>
   </div>
 );
 
 const Category = (props) => {
-  const cb = props.desc === 'Cats' ?
+  const provideImageSource = props.desc === 'Cats' ?
     () => `https://placekitten.com/200/200?image=${Math.round(Math.random() * 16)}` :
     () => 'https://dummyimage.com/200x200/999/000.png';
 
@@ -18,7 +18,7 @@ const Category = (props) => {
     <div>
       <h2>{props.desc}</h2>
       <div className="product--container">
-        { props.items.map(entry => renderProduct(entry.text, entry.link, cb)) }
+        { props.items.map(entry => renderProduct(entry.text, entry.link, provideImageSource)) }
       </div>
     </div>
   );
