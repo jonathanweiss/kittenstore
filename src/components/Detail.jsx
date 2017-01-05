@@ -226,7 +226,7 @@ const Detail = (props) => {
           <div className="card-header">
             <h4 className="card-title">{catData.name}</h4>
             <h6 className="card-meta">{catData.race}</h6>
-            <img alt={catData.name} src={`https://placekitten.com/200/200?image=${Math.round(Math.random() * 16)}`} />
+            <img width="200" height="200" alt={catData.name} src={`https://placekitten.com/200/200?image=${Math.round(Math.random() * 16)}`} />
           </div>
           <div className="card-body">
             <blockquote>
