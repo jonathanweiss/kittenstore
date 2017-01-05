@@ -5,15 +5,19 @@ const List = (props) => {
   const cats = props.data.filter(cat => cat.name.indexOf(term) !== -1);
 
   const renderEmpty = () => (
-    <section className="empty">
-      <i className="icon icon-search" />
-      <p className="empty-title">No results for search term &ldquo;{term}&rdquo;</p>
-      <p className="empty-meta">Try something different</p>
-      <div className="input-group input-inline">
-        <input className="form-input" type="text" placeholder="search" />
-        <button className="btn btn-primary input-group-btn">Search</button>
+    <div className="columns">
+      <div className="column col-12">
+        <section className="empty">
+          <i className="icon icon-search" />
+          <p className="empty-title">No results for search term &ldquo;{term}&rdquo;</p>
+          <p className="empty-meta">Try something different</p>
+          <div className="input-group input-inline">
+            <input className="form-input" type="text" placeholder="search" />
+            <button className="btn btn-primary input-group-btn">Search</button>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   );
 
   const renderList = () => (
