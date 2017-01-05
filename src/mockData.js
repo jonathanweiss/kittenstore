@@ -17,7 +17,7 @@ const data = {
       link: '/cart',
     },
   ],
-  products: {
+  categories: {
     cats: {
       desc: 'Cats',
       items: [
