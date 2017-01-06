@@ -929,6 +929,7 @@ const data = {
         raceSlug: 'british-shorthair',
       },
     ],
+    catfood: [],
   },
 };
 

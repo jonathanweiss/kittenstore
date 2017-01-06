@@ -13,7 +13,7 @@ const renderProduct = (text, link, type, provideImageSource) => (
 );
 
 const Category = (props) => {
-  const type = props.desc.toLowerCase();
+  const type = props.desc.toLowerCase().split(' ').join('');
   const provideImageSource = type === 'cats' ?
     () => `https://placekitten.com/200/200?image=${Math.round(Math.random() * 16)}` :
     () => 'https://dummyimage.com/200x200/999/000.png';
