@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavigationPrompt } from 'react-router';
 
 class Contact extends React.Component {
   constructor() {
@@ -20,6 +21,7 @@ class Contact extends React.Component {
   render() {
     return (
       <div className="columns">
+        <NavigationPrompt message={location => (`Are you sure you want to go to ${location.pathname}`)} />
         <div className="column col-12">
           <h2>Contact us</h2>
           <form>
