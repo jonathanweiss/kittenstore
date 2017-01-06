@@ -1,9 +1,9 @@
 const data = {
   navigation: [
     {
-      text: 'KittenStore',
+      text: '',
       link: '/',
-      isHomeLink: true
+      isHomeLink: true,
     },
     {
       text: 'Cats',
@@ -16,6 +16,10 @@ const data = {
     {
       text: 'About',
       link: '/about',
+    },
+    {
+      text: 'Contact',
+      link: '/contact',
     },
     {
       text: 'Shopping Cart',
