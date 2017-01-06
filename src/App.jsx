@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Category from './components/Category';
 import Cart from './components/Cart';
 import List from './components/List';
+import Detail from './components/Detail';
 
 const App = (props, context) => {
   const categories = props.data.categories;
@@ -26,8 +27,10 @@ const App = (props, context) => {
       <Match exactly pattern="/catfood" render={() => <Category desc={categories.catfood.desc} items={categories.catfood.items} />} />
       <Match exactly pattern="/cats" render={() => <Category desc={categories.cats.desc} items={categories.cats.items} />} />
 
-      <Match pattern="/cats/:race" render={({ params }) => <List type="cats" slug={params.race} data={cats} />} />
-      <Match pattern="/catfood/:brand" render={({ params }) => <List type="catfood" slug={params.brand} data={catfood} />} />
+      <Match exactly pattern="/cats/:race" render={({ params }) => <List type="cats" slug={params.race} data={cats} />} />
+      <Match exactly pattern="/catfood/:brand" render={({ params }) => <List type="catfood" slug={params.brand} data={catfood} />} />
+
+      <Match pattern="/cats/:race/:catName" render={({ params }) => <Detail slug={params.catName} data={cats} />} />
 
       <Miss component={Error404} />
     </div>
