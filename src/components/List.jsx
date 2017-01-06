@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const renderProducts = products => (
   <div className="columns">
@@ -32,14 +33,16 @@ const renderProducts = products => (
   </div>
 );
 
-const renderEmpty = slug => (
+const renderEmpty = (slug, type) => (
   <div className="columns">
     <div className="column col-12">
       <section className="empty">
         <i className="icon icon-baffled" />
         <p className="empty-title">No product found for category &ldquo;{slug}&rdquo;.</p>
         <p className="empty-meta">Try a different category.</p>
-        <button className="empty-action btn btn-primary">Browse for products</button>
+        <Link to={`/${type}`}>
+          <button className="empty-action btn btn-primary">Browse for products</button>
+        </Link>
       </section>
     </div>
   </div>
@@ -49,11 +52,12 @@ const List = (props) => {
   const slug = props.slug;
   const products = props.data.filter(product => product.raceSlug === slug);
 
-  return products.length ? renderProducts(products) : renderEmpty(slug);
+  return products.length ? renderProducts(products) : renderEmpty(slug, props.type);
 };
 
 List.propTypes = {
   slug: React.PropTypes.string.isRequired,
+  type: React.PropTypes.string.isRequired,
   data: React.PropTypes.array.isRequired,
 };
 
