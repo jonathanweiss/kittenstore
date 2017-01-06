@@ -10,6 +10,7 @@ import Category from './components/Category';
 import Cart from './components/Cart';
 import List from './components/List';
 import Detail from './components/Detail';
+import SearchResult from './components/SearchResult';
 
 const getFirstPartOfPath = (pathname) => {
   const parts = pathname.split('/');
@@ -17,8 +18,8 @@ const getFirstPartOfPath = (pathname) => {
 };
 
 const App = (props, context) => {
-  const categories = props.data.categories;
-  const { cats, catfood } = props.data.products;
+  const { categories, products } = props.data;
+  const { cats, catfood } = products;
 
   return (
     <div>
@@ -36,6 +37,8 @@ const App = (props, context) => {
       <Match exactly pattern="/catfood/:brand" render={({ params }) => <List type="catfood" slug={params.brand} data={catfood} />} />
 
       <Match pattern="/cats/:race/:catName" render={({ params }) => <Detail slug={params.catName} data={cats} />} />
+
+      <Match pattern="/search/:term" render={({ params }) => <SearchResult term={params.term} data={cats} />} />
 
       <Miss component={Error404} />
     </div>

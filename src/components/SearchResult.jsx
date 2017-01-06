@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const List = (props) => {
   const term = props.term;
@@ -40,7 +41,13 @@ const List = (props) => {
 
               return (
                 <tr key={cat.slug}>
-                  <td>{nameParts[0]}<span className="highlight">{term}</span>{nameParts[1]}</td>
+                  <td>
+                    <Link to={`/cats/${cat.raceSlug}/${cat.slug}`}>
+                      {nameParts[0]}
+                      <span className="highlight">{term}</span>
+                      {nameParts[1]}
+                    </Link>
+                  </td>
                   <td>{cat.race}</td>
                   <td>{ageInWeeks} weeks</td>
                   <td>{ageInWeeks * 3} oz</td>
