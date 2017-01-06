@@ -9,12 +9,12 @@ import Contact from './components/Contact';
 import Category from './components/Category';
 import Cart from './components/Cart';
 
-const App = (props) => {
+const App = (props, context) => {
   const categories = props.data.categories;
 
   return (
     <div>
-      <Match pattern="*" render={({...rest}) => <Navigation {...rest} items={props.data.navigation} />} />
+      <Navigation activePath={context.location.pathname} items={props.data.navigation} />
 
       <Match exactly pattern="/about" component={About} />
       <Match exactly pattern="/contact" component={Contact} />
@@ -31,6 +31,10 @@ const App = (props) => {
 
 App.propTypes = {
   data: React.PropTypes.object,
+};
+
+App.contextTypes = {
+  location: React.PropTypes.object,
 };
 
 export default App;
