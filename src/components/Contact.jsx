@@ -11,17 +11,15 @@ class Contact extends React.Component {
   }
 
   markAsChanged(e) {
-    if (e.target.value.length > 0) {
-      this.setState({
-        modifiedContent: true,
-      });
-    }
+    this.setState({
+      modifiedContent: e.target.value.length > 0,
+    });
   }
 
   render() {
     return (
       <div className="columns">
-        <NavigationPrompt message={location => (`Are you sure you want to go to ${location.pathname}`)} />
+        { this.state.modifiedContent ? <NavigationPrompt message={location => (`Are you sure you want to go to ${location.pathname}`)} /> : null }
         <div className="column col-12">
           <h2>Contact us</h2>
           <form>
