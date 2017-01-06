@@ -15,7 +15,8 @@ const getRandomQuote = (() => {
       person: 'Charles M. Blow (columnist)',
     },
     {
-      text: '“That’s the great secret of creativity. You treat ideas like cats: you make them follow you.”―Ray Bradbury (author, Fahrenheit 451)',
+      text: '“That’s the great secret of creativity. You treat ideas like cats: you make them follow you.”',
+      person: 'Ray Bradbury (author, Fahrenheit 451)',
     },
     {
       text: '“Cats and dogs believe politicians are like cemetery caregivers ',
@@ -178,11 +179,8 @@ const getRandomQuote = (() => {
       person: 'William Shakespeare (playwright, Henry IV)',
     },
     {
-      text: '“I have studied many philosophers and many cats. The wisdom of cats is infinitely superior.”―Hippolyte Taine (critic)',
-    },
-    {
-      text: '“I have lived with several Zen masters ',
-      person: ' all of them cats.”',
+      text: '“I have studied many philosophers and many cats. The wisdom of cats is infinitely superior.”',
+      person: 'Hippolyte Taine (critic)',
     },
     {
       text: '“Of all God’s creatures, there is only one that cannot be made slave of the lash. That one is the cat. ' +
