@@ -1,16 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-const renderProduct = (text, link, provideImageSource) => (
+const renderProduct = (text, link, type, provideImageSource) => (
   <div key={link} className="product--item">
-    <figure>
-      <img width="200" height="200" src={provideImageSource()} alt={text} />
-      <figcaption>{text}</figcaption>
-    </figure>
+    <Link to={`/${type}/${link}`}>
+      <figure>
+        <img width="200" height="200" src={provideImageSource()} alt={text} />
+        <figcaption>{text}</figcaption>
+      </figure>
+    </Link>
   </div>
 );
 
 const Category = (props) => {
-  const provideImageSource = props.desc === 'Cats' ?
+  const type = props.desc.toLowerCase();
+  const provideImageSource = type === 'cats' ?
     () => `https://placekitten.com/200/200?image=${Math.round(Math.random() * 16)}` :
     () => 'https://dummyimage.com/200x200/999/000.png';
 
@@ -18,7 +22,7 @@ const Category = (props) => {
     <div className="columns">
       <h2>{props.desc}</h2>
       <div className="product--container">
-        { props.items.map(entry => renderProduct(entry.text, entry.link, provideImageSource)) }
+        { props.items.map(entry => renderProduct(entry.text, entry.link, type, provideImageSource)) }
       </div>
     </div>
   );

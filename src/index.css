@@ -9,8 +9,7 @@ body {
   color: #fff;
 }
 
-.empty .icon-search,
-.empty .icon-cart {
+.empty > .icon {
   font-size: 3em;
 }
 
