@@ -18,7 +18,7 @@ const Homepage = (props) => {
 
   return (
     <div>
-      <Navigation items={props.data.navigation} />
+      <Navigation items={props.data.navigation} activePath="/" />
       <div className="columns">
         <div className="column col-12">
           <h1>KittenStore</h1>
