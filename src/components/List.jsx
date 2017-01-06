@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const renderProducts = products => (
+const renderProducts = (products, pathname) => (
   <div className="columns">
     <div className="column col-12">
-      <h2>All &ldquo;{products[0].race}&rdquo; products</h2>
+      <h2>All &ldquo;{products[0].race}&rdquo;</h2>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
@@ -15,12 +15,12 @@ const renderProducts = products => (
           </tr>
         </thead>
         <tbody>
-          {products.map((cat) => {
+          {products.map((product) => {
             const ageInWeeks = 10 + Math.round(Math.random() * 10);
 
             return (
-              <tr key={cat.slug}>
-                <td>{cat.name}</td>
+              <tr key={product.slug}>
+                <td><Link to={`${pathname}/${product.slug}`}>{product.name}</Link></td>
                 <td>{ageInWeeks} weeks</td>
                 <td>{ageInWeeks * 3} oz</td>
                 <td>${50 + Math.round(Math.random() * 100)}.99</td>
@@ -48,17 +48,22 @@ const renderEmpty = (slug, type) => (
   </div>
 );
 
-const List = (props) => {
-  const slug = props.slug;
+const List = (props, context) => {
+  const { slug, type } = props;
+  const { pathname } = context.location;
   const products = props.data.filter(product => product.raceSlug === slug);
 
-  return products.length ? renderProducts(products) : renderEmpty(slug, props.type);
+  return products.length ? renderProducts(products, pathname) : renderEmpty(slug, type);
 };
 
 List.propTypes = {
   slug: React.PropTypes.string.isRequired,
   type: React.PropTypes.string.isRequired,
   data: React.PropTypes.array.isRequired,
+};
+
+List.contextTypes = {
+  location: React.PropTypes.object,
 };
 
 export default List;
