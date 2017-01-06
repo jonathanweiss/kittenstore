@@ -1,6 +1,11 @@
 const data = {
   navigation: [
     {
+      text: 'KittenStore',
+      link: '/',
+      isHomeLink: true
+    },
+    {
       text: 'Cats',
       link: '/cats',
     },
