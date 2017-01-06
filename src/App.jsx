@@ -11,13 +11,18 @@ import Cart from './components/Cart';
 import List from './components/List';
 import Detail from './components/Detail';
 
+const getFirstPartOfPath = (pathname) => {
+  const parts = pathname.split('/');
+  return (parts.length > 0) ? `/${parts[1]}` : '/';
+};
+
 const App = (props, context) => {
   const categories = props.data.categories;
   const { cats, catfood } = props.data.products;
 
   return (
     <div>
-      <Navigation activePath={context.location.pathname} items={props.data.navigation} />
+      <Navigation activePath={getFirstPartOfPath(context.location.pathname)} items={props.data.navigation} />
 
       <Match exactly pattern="/about" component={About} />
       <Match exactly pattern="/contact" component={Contact} />

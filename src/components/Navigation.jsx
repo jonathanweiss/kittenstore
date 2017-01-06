@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-// We'll remove the hashes when we integrate react-router ;)
-/* eslint-disable jsx-a11y/href-no-hash */
 const renderNavItem = (entry, activePath) => {
   const cssClasses = [
     'btn',
@@ -38,4 +36,3 @@ Navigation.propTypes = {
 };
 
 export default Navigation;
-/* eslint-enable jsx-a11y/href-no-hash */
