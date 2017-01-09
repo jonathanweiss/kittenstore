@@ -11,7 +11,7 @@ import List from './components/List';
 import Navigation from './components/Navigation';
 import SearchResult from './components/SearchResult';
 
-const SHOW_ALL_COMPONENTS = true;
+const SHOW_ALL_COMPONENTS = false;
 
 const App = (props) => {
   if (SHOW_ALL_COMPONENTS) {
@@ -40,8 +40,8 @@ const App = (props) => {
         <hr />
       </div>
     );
-  } else {
-    return (<Homepage amountOfProducts={3} data={props.data} />);
+  } else { // eslint-disable-line
+    return (<Homepage amountOfProducts={2} data={props.data} />);
   }
 };
 

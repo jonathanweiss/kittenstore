@@ -38,7 +38,7 @@ Navigation.propTypes = {
 
 Navigation.defaultProps = {
   items: [],
-  activePath: '/'
+  activePath: '/',
 };
 
 export default Navigation;
