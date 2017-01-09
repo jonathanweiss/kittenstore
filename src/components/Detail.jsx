@@ -143,10 +143,6 @@ const getRandomQuote = (() => {
       person: 'Trisha McCagh (animal communicator)',
     },
     {
-      text: '“Cats have it all ',
-      person: ' admiration, an endless sleep, and company only when they want it.”',
-    },
-    {
       text: '“A dog will flatter you but you have to flatter the cat.”',
       person: 'George Mikes (author, How to be an Alien)',
     },
