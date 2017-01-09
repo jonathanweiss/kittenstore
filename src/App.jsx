@@ -20,6 +20,7 @@ const App = (props) => {
 
     return (
       <div>
+        <List type="cats" slug="javanese" data={cats} sortedBy="name" sortDirection="asc" />
         <About />
         <hr />
         <Error404 />
