@@ -1,8 +1,26 @@
 import React from 'react';
 
+const headers = ['Name', 'Age', 'Weight', 'Price'];
+
+const renderHeader = (text, sortedBy, direction) => (
+  <th key={text}>
+    <span>{text}</span>
+    {text.toLowerCase() === sortedBy ? <span className={`icon icon-arrow-${direction}2`} /> : null}
+  </th>
+);
+
 const List = (props) => {
-  const slug = props.slug;
-  const cats = props.data.filter(cat => cat.breedSlug === slug);
+  const { slug, sortedBy, sortDirection } = props;
+  let cats = props.data.filter(cat => cat.breedSlug === slug);
+
+  if (props.sortedBy) {
+    cats = cats.sort((a, b) => {
+      const trueValue = sortDirection === 'desc' ? -1 : 1;
+      const falseValue = sortDirection === 'desc' ? 1 : -1;
+
+      return a[props.sortedBy] > b[props.sortedBy] ? trueValue : falseValue;
+    });
+  }
 
   return (
     <div className="columns">
@@ -11,25 +29,18 @@ const List = (props) => {
         <table className="table table-striped table-hover">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Age</th>
-              <th>Weight</th>
-              <th>Price</th>
+              {headers.map(text => renderHeader(text, sortedBy, sortDirection === 'desc' ? 'down' : 'up'))}
             </tr>
           </thead>
           <tbody>
-            {cats.map((cat) => {
-              const ageInWeeks = 10 + Math.round(Math.random() * 10);
-
-              return (
-                <tr key={cat.slug}>
-                  <td>{cat.name}</td>
-                  <td>{ageInWeeks} weeks</td>
-                  <td>{ageInWeeks * 3} oz</td>
-                  <td>${50 + Math.round(Math.random() * 100)}.99</td>
-                </tr>
-              );
-            })}
+            {cats.map(cat => (
+              <tr key={cat.slug}>
+                <td>{cat.name}</td>
+                <td>{cat.age} weeks</td>
+                <td>{cat.weight} oz</td>
+                <td>${cat.price}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -40,6 +51,8 @@ const List = (props) => {
 List.propTypes = {
   slug: React.PropTypes.string.isRequired,
   data: React.PropTypes.array.isRequired,
+  sortedBy: React.PropTypes.string,
+  sortDirection: React.PropTypes.string,
 };
 
 export default List;
