@@ -1,24 +1,24 @@
 import React from 'react';
 
-const renderProduct = (text, link, provideImageSource) => (
-  <div key={link} className="product--item">
+const renderProduct = (name, slug, provideImageSource) => (
+  <div key={slug} className="product--item">
     <figure>
-      <img width="200" height="200" src={provideImageSource()} alt={text} />
-      <figcaption>{text}</figcaption>
+      <img width="200" height="200" src={provideImageSource()} alt={name} />
+      <figcaption>{name}</figcaption>
     </figure>
   </div>
 );
 
 const Category = (props) => {
-  const provideImageSource = props.desc === 'Cats' ?
-    () => `https://placekitten.com/200/200?image=${Math.round(Math.random() * 16)}` :
+  const provideImageSource = props.desc === 'cats' ?
+    index => `https://placekitten.com/200/200?image=${index}` :
     () => 'https://dummyimage.com/200x200/999/000.png';
 
   return (
     <div className="columns">
       <h2>{props.desc}</h2>
       <div className="product--container">
-        { props.items.map(entry => renderProduct(entry.text, entry.link, provideImageSource)) }
+        { props.items.map((entry, index) => renderProduct(entry.name, entry.slug, provideImageSource.bind(this, index))) }
       </div>
     </div>
   );
