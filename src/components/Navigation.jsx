@@ -36,5 +36,10 @@ Navigation.propTypes = {
   activePath: React.PropTypes.string,
 };
 
+Navigation.defaultProps = {
+  items: [],
+  activePath: '/'
+};
+
 export default Navigation;
 /* eslint-enable jsx-a11y/href-no-hash */

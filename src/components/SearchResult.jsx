@@ -41,7 +41,7 @@ const List = (props) => {
               return (
                 <tr key={cat.slug}>
                   <td>{nameParts[0]}<span className="highlight">{term}</span>{nameParts[1]}</td>
-                  <td>{cat.race}</td>
+                  <td>{cat.breed}</td>
                   <td>{ageInWeeks} weeks</td>
                   <td>{ageInWeeks * 3} oz</td>
                 </tr>

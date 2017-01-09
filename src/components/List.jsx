@@ -2,12 +2,12 @@ import React from 'react';
 
 const List = (props) => {
   const slug = props.slug;
-  const cats = props.data.filter(cat => cat.raceSlug === slug);
+  const cats = props.data.filter(cat => cat.breedSlug === slug);
 
   return (
     <div className="columns">
       <div className="column col-12">
-        <h2>All &ldquo;{cats[0].race}&rdquo; cats</h2>
+        <h2>All &ldquo;{cats[0].breed}&rdquo; cats</h2>
         <table className="table table-striped table-hover">
           <thead>
             <tr>
