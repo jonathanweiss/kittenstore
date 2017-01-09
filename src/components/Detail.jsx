@@ -217,7 +217,7 @@ const Detail = (props) => {
   const catData = props.data[catIndex];
   const quote = getRandomQuote();
 
-  const { gender, price, weight } = catData;
+  const { age, gender, price, weight } = catData;
 
   return (
     <div className="columns">
@@ -225,7 +225,7 @@ const Detail = (props) => {
         <div className="card">
           <div className="card-header">
             <h4 className="card-title">{catData.name}</h4>
-            <h6 className="card-meta">{gender === 'male' ? '♂' : ' ♀'}{catData.breed}</h6>
+            <h6 className="card-meta">{catData.breed}</h6>
             <img width="200" height="200" alt={catData.name} src={`https://placekitten.com/200/200?image=${Math.round(Math.random() * 16)}`} />
           </div>
           <div className="card-body">
@@ -233,8 +233,27 @@ const Detail = (props) => {
               <p>{quote.text}</p>
               <cite>&ndash; {quote.person}</cite>
             </blockquote>
-            <p><span className={`label ${price < 100 ? 'label-success' : 'label-danger'}`}>${price}</span></p>
-            <p>{weight}oz</p>
+
+            <table className="table table-striped">
+              <tbody>
+                <tr>
+                  <td>Age</td>
+                  <td>{age} weeks</td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td>{gender === 'male' ? '♂' : ' ♀'}</td>
+                </tr>
+                <tr>
+                  <td>Weight</td>
+                  <td>{weight}oz</td>
+                </tr>
+                <tr>
+                  <td>Price</td>
+                  <td><span className={`label ${price < 100 ? 'label-success' : 'label-danger'}`}>${price}</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <div className="card-footer">
             <a href="/" className="btn btn-primary">Buy</a>
