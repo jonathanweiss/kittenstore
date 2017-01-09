@@ -1,23 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const renderProducts = (products, pathname) => (
+const headers = ['Name', 'Age', 'Weight', 'Gender', 'Price'];
+
+const renderHeader = (text, sortedBy, direction) => (
+  <th key={text}>
+    <span>{text}</span>
+    {text.toLowerCase() === sortedBy ? <span className={`icon icon-arrow-${direction}2`} /> : null}
+  </th>
+);
+
+const renderProducts = (products, pathname, sortedBy, sortDirection) => (
   <div className="columns">
     <div className="column col-12">
       <h2>All &ldquo;{products[0].breed}&rdquo;</h2>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Weight</th>
-            <th>Gender</th>
-            <th>Price</th>
+            {headers.map(text => renderHeader(text, sortedBy, sortDirection === 'desc' ? 'down' : 'up'))}
           </tr>
         </thead>
         <tbody>
           {products.map((product) => {
-            const { age, weight, gender } = product;
+            const { age, weight, gender, price } = product;
 
             return (
               <tr key={product.slug}>
@@ -25,7 +30,7 @@ const renderProducts = (products, pathname) => (
                 <td>{age} weeks</td>
                 <td>{weight} oz</td>
                 <td>{gender === 'male' ? '♂' : ' ♀'}</td>
-                <td>${50 + Math.round(Math.random() * 100)}.99</td>
+                <td>${price}</td>
               </tr>
             );
           })}
@@ -51,17 +56,28 @@ const renderEmpty = (slug, type) => (
 );
 
 const List = (props, context) => {
-  const { slug, type } = props;
+  const { slug, type, sortedBy, sortDirection } = props;
   const { pathname } = context.location;
-  const products = props.data.filter(product => product.breedSlug === slug);
+  let products = props.data.filter(product => product.breedSlug === slug);
 
-  return products.length ? renderProducts(products, pathname) : renderEmpty(slug, type);
+  if (sortedBy) {
+    products = products.sort((a, b) => {
+      const trueValue = sortDirection === 'desc' ? -1 : 1;
+      const falseValue = sortDirection === 'desc' ? 1 : -1;
+
+      return a[props.sortedBy] > b[props.sortedBy] ? trueValue : falseValue;
+    });
+  }
+
+  return products.length ? renderProducts(products, pathname, sortedBy, sortDirection) : renderEmpty(slug, type);
 };
 
 List.propTypes = {
   slug: React.PropTypes.string.isRequired,
   type: React.PropTypes.string.isRequired,
   data: React.PropTypes.array.isRequired,
+  sortedBy: React.PropTypes.string,
+  sortDirection: React.PropTypes.string,
 };
 
 List.contextTypes = {
