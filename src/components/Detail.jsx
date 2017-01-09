@@ -229,11 +229,6 @@ const Detail = (props) => {
             <img width="200" height="200" alt={catData.name} src={`https://placekitten.com/200/200?image=${Math.round(Math.random() * 16)}`} />
           </div>
           <div className="card-body">
-            <blockquote>
-              <p>{quote.text}</p>
-              <cite>&ndash; {quote.person}</cite>
-            </blockquote>
-
             <table className="table table-striped">
               <tbody>
                 <tr>
@@ -254,10 +249,17 @@ const Detail = (props) => {
                 </tr>
               </tbody>
             </table>
+
+            <p className="pt-10">
+              <a href="/" className="btn btn-primary">Buy</a>
+              <a href="/" className="btn btn-link">Share</a>
+            </p>
           </div>
           <div className="card-footer">
-            <a href="/" className="btn btn-primary">Buy</a>
-            <a href="/" className="btn btn-link">Share</a>
+            <blockquote>
+              <p>{quote.text}</p>
+              <cite>&ndash; {quote.person}</cite>
+            </blockquote>
           </div>
         </div>
       </div>

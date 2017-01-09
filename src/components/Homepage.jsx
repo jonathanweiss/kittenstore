@@ -32,7 +32,7 @@ const Homepage = (props) => {
           </p>
         </div>
         {randomCats.map(cat => (
-          <div className="column col-4" key={cat.slug}>
+          <div className={`column col-${12 / props.amountOfProducts}`} key={cat.slug}>
             <Detail slug={cat.slug} data={catData} />
           </div>
         ))}
