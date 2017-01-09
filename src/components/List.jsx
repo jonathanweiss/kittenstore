@@ -3,12 +3,17 @@ import { Link } from 'react-router';
 
 const headers = ['Name', 'Age', 'Weight', 'Gender', 'Price'];
 
-const renderHeader = (text, sortedBy, direction) => (
-  <th key={text}>
-    <span>{text}</span>
-    {text.toLowerCase() === sortedBy ? <span className={`icon icon-arrow-${direction}2`} /> : null}
-  </th>
-);
+const renderHeader = (text, sortedBy, direction) => {
+  const value = text.toLowerCase();
+  const arrowName = direction === 'desc' ? 'down' : 'up';
+
+  return (
+    <th key={value}>
+      <Link to={`?sortedBy=${value}&sortDirection=${direction}`}>{text}</Link>
+      {value === sortedBy ? <span className={`icon icon-arrow-${arrowName}2`} /> : null}
+    </th>
+  );
+};
 
 const renderProducts = (products, pathname, sortedBy, sortDirection) => (
   <div className="columns">
@@ -17,7 +22,7 @@ const renderProducts = (products, pathname, sortedBy, sortDirection) => (
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            {headers.map(text => renderHeader(text, sortedBy, sortDirection === 'desc' ? 'down' : 'up'))}
+            {headers.map(text => renderHeader(text, sortedBy, sortDirection))}
           </tr>
         </thead>
         <tbody>
@@ -29,7 +34,7 @@ const renderProducts = (products, pathname, sortedBy, sortDirection) => (
                 <td><Link to={`${pathname}/${product.slug}`}>{product.name}</Link></td>
                 <td>{age} weeks</td>
                 <td>{weight} oz</td>
-                <td>{gender === 'male' ? '♂' : ' ♀'}</td>
+                <td>{gender === 'male' ? '♂' : '♀'}</td>
                 <td>${price}</td>
               </tr>
             );
