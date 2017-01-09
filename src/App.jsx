@@ -52,7 +52,11 @@ const App = (props, context) => {
         }}
       />
 
-      <Match exactly pattern="/catfood/:brand" render={({ params }) => <List type="catfood" slug={params.brand} data={catfood} sortedBy="price" sortDirection="up" />} />
+      <Match
+        exactly
+        pattern="/catfood/:brand"
+        render={({ params }) => (<List type="catfood" slug={params.brand} data={catfood} sortedBy="price" sortDirection="up" />)}
+      />
 
       <Match pattern="/cats/:breed/:catName" render={({ params }) => <Detail slug={params.catName} data={cats} />} />
 
