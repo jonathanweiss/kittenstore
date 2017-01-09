@@ -6,10 +6,17 @@ const headers = ['Name', 'Age', 'Weight', 'Gender', 'Price'];
 const renderHeader = (text, sortedBy, direction) => {
   const value = text.toLowerCase();
   const arrowName = direction === 'desc' ? 'down' : 'up';
+  let sortDirection;
+
+  if (value === sortedBy) {
+    sortDirection = direction === 'asc' ? 'desc' : 'asc';
+  } else {
+    sortDirection = 'asc';
+  }
 
   return (
     <th key={value}>
-      <Link to={`?sortedBy=${value}&sortDirection=${direction}`}>{text}</Link>
+      <Link to={`?sortedBy=${value}&sortDirection=${sortDirection}`}>{text}</Link>
       {value === sortedBy ? <span className={`icon icon-arrow-${arrowName}2`} /> : null}
     </th>
   );
