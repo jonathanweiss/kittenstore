@@ -125,7 +125,7 @@ const getRandomQuote = (() => {
       person: 'Leonardo da Vinci (artist, Mona Lisa)',
     },
     {
-      text: '“In its flawless grace and superior self-sufficiency I have seen a symbol of the perfect beauty and ' +
+      text: '“In its flawless gbreed and superior self-sufficiency I have seen a symbol of the perfect beauty and ' +
       'bland impersonality of the universe itself, objectively considered, and in its air of silent mystery there ' +
       'resides for me all the wonder and fascination of the unknown.”',
       person: 'H.P. Lovecraft (author, At the Mountains of Madness)',
@@ -216,7 +216,8 @@ const Detail = (props) => {
   const catIndex = props.data.findIndex(cat => cat.slug === props.slug);
   const catData = props.data[catIndex];
   const quote = getRandomQuote();
-  const price = 50 + Math.round(Math.random() * 100);
+
+  const { gender, price, weight } = catData;
 
   return (
     <div className="columns">
@@ -224,7 +225,7 @@ const Detail = (props) => {
         <div className="card">
           <div className="card-header">
             <h4 className="card-title">{catData.name}</h4>
-            <h6 className="card-meta">{catData.race}</h6>
+            <h6 className="card-meta">{gender === 'male' ? '♂' : ' ♀'}{catData.breed}</h6>
             <img width="200" height="200" alt={catData.name} src={`https://placekitten.com/200/200?image=${Math.round(Math.random() * 16)}`} />
           </div>
           <div className="card-body">
@@ -232,7 +233,8 @@ const Detail = (props) => {
               <p>{quote.text}</p>
               <cite>&ndash; {quote.person}</cite>
             </blockquote>
-            <p><span className={`label ${price < 100 ? 'label-success' : 'label-danger'}`}>${price}.99</span></p>
+            <p><span className={`label ${price < 100 ? 'label-success' : 'label-danger'}`}>${price}</span></p>
+            <p>{weight}oz</p>
           </div>
           <div className="card-footer">
             <a href="/" className="btn btn-primary">Buy</a>

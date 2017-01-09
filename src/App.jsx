@@ -33,10 +33,10 @@ const App = (props, context) => {
       <Match exactly pattern="/catfood" render={() => <Category desc={categories.catfood.desc} items={categories.catfood.items} />} />
       <Match exactly pattern="/cats" render={() => <Category desc={categories.cats.desc} items={categories.cats.items} />} />
 
-      <Match exactly pattern="/cats/:race" render={({ params }) => <List type="cats" slug={params.race} data={cats} />} />
+      <Match exactly pattern="/cats/:breed" render={({ params }) => <List type="cats" slug={params.breed} data={cats} />} />
       <Match exactly pattern="/catfood/:brand" render={({ params }) => <List type="catfood" slug={params.brand} data={catfood} />} />
 
-      <Match pattern="/cats/:race/:catName" render={({ params }) => <Detail slug={params.catName} data={cats} />} />
+      <Match pattern="/cats/:breed/:catName" render={({ params }) => <Detail slug={params.catName} data={cats} />} />
 
       <Match pattern="/search/:term" render={({ params }) => <SearchResult term={params.term} data={cats} />} />
 

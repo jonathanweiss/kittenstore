@@ -30,27 +30,22 @@ const List = (props) => {
             <tr>
               <th>Name</th>
               <th>Race</th>
-              <th>Age</th>
-              <th>Weight</th>
             </tr>
           </thead>
           <tbody>
             {cats.map((cat) => {
-              const ageInWeeks = 10 + Math.round(Math.random() * 10);
               const nameParts = cat.name.split(term);
 
               return (
                 <tr key={cat.slug}>
                   <td>
-                    <Link to={`/cats/${cat.raceSlug}/${cat.slug}`}>
+                    <Link to={`/cats/${cat.breedSlug}/${cat.slug}`}>
                       {nameParts[0]}
                       <span className="highlight">{term}</span>
                       {nameParts[1]}
                     </Link>
                   </td>
-                  <td>{cat.race}</td>
-                  <td>{ageInWeeks} weeks</td>
-                  <td>{ageInWeeks * 3} oz</td>
+                  <td>{cat.breed}</td>
                 </tr>
               );
             })}

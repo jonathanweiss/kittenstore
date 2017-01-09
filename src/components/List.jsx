@@ -4,25 +4,27 @@ import { Link } from 'react-router';
 const renderProducts = (products, pathname) => (
   <div className="columns">
     <div className="column col-12">
-      <h2>All &ldquo;{products[0].race}&rdquo;</h2>
+      <h2>All &ldquo;{products[0].breed}&rdquo;</h2>
       <table className="table table-striped table-hover">
         <thead>
           <tr>
             <th>Name</th>
             <th>Age</th>
             <th>Weight</th>
+            <th>Gender</th>
             <th>Price</th>
           </tr>
         </thead>
         <tbody>
           {products.map((product) => {
-            const ageInWeeks = 10 + Math.round(Math.random() * 10);
+            const { age, weight, gender } = product;
 
             return (
               <tr key={product.slug}>
                 <td><Link to={`${pathname}/${product.slug}`}>{product.name}</Link></td>
-                <td>{ageInWeeks} weeks</td>
-                <td>{ageInWeeks * 3} oz</td>
+                <td>{age} weeks</td>
+                <td>{weight} oz</td>
+                <td>{gender === 'male' ? '♂' : ' ♀'}</td>
                 <td>${50 + Math.round(Math.random() * 100)}.99</td>
               </tr>
             );
@@ -51,7 +53,7 @@ const renderEmpty = (slug, type) => (
 const List = (props, context) => {
   const { slug, type } = props;
   const { pathname } = context.location;
-  const products = props.data.filter(product => product.raceSlug === slug);
+  const products = props.data.filter(product => product.breedSlug === slug);
 
   return products.length ? renderProducts(products, pathname) : renderEmpty(slug, type);
 };

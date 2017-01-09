@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const renderProduct = (text, link, type, provideImageSource) => (
-  <div key={link} className="product--item">
-    <Link to={`/${type}/${link}`}>
+const renderProduct = (name, slug, type, provideImageSource) => (
+  <div key={slug} className="product--item">
+    <Link to={`/${type}/${slug}`}>
       <figure>
-        <img width="200" height="200" src={provideImageSource()} alt={text} />
-        <figcaption>{text}</figcaption>
+        <img width="200" height="200" src={provideImageSource()} alt={name} />
+        <figcaption>{name}</figcaption>
       </figure>
     </Link>
   </div>
@@ -15,14 +15,14 @@ const renderProduct = (text, link, type, provideImageSource) => (
 const Category = (props) => {
   const type = props.desc.toLowerCase().split(' ').join('');
   const provideImageSource = type === 'cats' ?
-    () => `https://placekitten.com/200/200?image=${Math.round(Math.random() * 16)}` :
+    index => `https://placekitten.com/200/200?image=${index}` :
     () => 'https://dummyimage.com/200x200/999/000.png';
 
   return (
     <div className="columns">
       <h2>{props.desc}</h2>
       <div className="product--container">
-        { props.items.map(entry => renderProduct(entry.text, entry.link, type, provideImageSource)) }
+        { props.items.map((entry, index) => renderProduct(entry.name, entry.slug, type, provideImageSource.bind(this, index))) }
       </div>
     </div>
   );
