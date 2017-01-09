@@ -16,8 +16,7 @@ const renderNavItem = (entry, activePath) => {
   );
 };
 
-let textboxRef = null;
-const startSearch = (transitionTo) => {
+const startSearch = (textboxRef, transitionTo) => {
   const term = textboxRef.value;
 
   if (term.length > 0) {
@@ -28,6 +27,7 @@ const startSearch = (transitionTo) => {
 const Navigation = (props, context) => {
   const { activePath } = props;
   const { transitionTo } = context.router;
+  let textboxRef = null;
 
   /* eslint-disable no-return-assign */
   return (
@@ -38,7 +38,7 @@ const Navigation = (props, context) => {
       <section className="navbar-section">
         <div className="input-group input-inline">
           <input className="form-input" type="text" placeholder="search" ref={ref => textboxRef = ref} />
-          <button className="btn btn-primary input-group-btn" onClick={() => startSearch(transitionTo)}>Search</button>
+          <button className="btn btn-primary input-group-btn" onClick={() => startSearch(textboxRef, transitionTo)}>Search</button>
         </div>
       </section>
     </header>
