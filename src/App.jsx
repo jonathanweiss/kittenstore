@@ -11,7 +11,7 @@ import List from './components/List';
 import Navigation from './components/Navigation';
 import SearchResult from './components/SearchResult';
 
-const SHOW_ALL_COMPONENTS = false;
+const SHOW_ALL_COMPONENTS = true;
 
 const App = (props) => {
   if (SHOW_ALL_COMPONENTS) {
@@ -20,7 +20,6 @@ const App = (props) => {
 
     return (
       <div>
-        <List type="cats" slug="javanese" data={cats} sortedBy="name" sortDirection="asc" />
         <About />
         <hr />
         <Error404 />
@@ -35,7 +34,7 @@ const App = (props) => {
         <hr />
         <Category desc="cats" items={categories.cats.items} />
         <hr />
-        <List type="cats" slug="javanese" data={cats} />
+        <List type="cats" slug="javanese" data={cats} sortedBy="name" sortDirection="asc" />
         <hr />
         <Detail slug="twinkle" data={cats} />
         <hr />
