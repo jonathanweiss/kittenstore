@@ -38,7 +38,7 @@ const App = (props, context) => {
         pattern="/cats/:breed"
         render={({ params, location }) => {
           const sortedBy = location.query ? location.query.sortedBy : '';
-          const sortDirection = location.query ? location.query.sortDirection : 'asc';
+          const sortDirection = location.query ? location.query.sortDirection : '';
 
           return (
             <List
