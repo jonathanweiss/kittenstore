@@ -19,10 +19,6 @@ const getRandomQuote = (() => {
       person: 'Ray Bradbury (author, Fahrenheit 451)',
     },
     {
-      text: '“Cats and dogs believe politicians are like cemetery caregivers ',
-      person: ' they are on top of everyone, but nobody listens.”',
-    },
-    {
       text: '“My relationships with my cats has saved me from a deadly, pervasive ignorance.”',
       person: 'William S. Burroughs (author, The Naked Lunch)',
     },
