@@ -11,7 +11,7 @@ const renderNavItem = (entry, activePath) => {
 
   return (
     <a href="#" className={cssClasses.join(' ')} key={entry.link}>
-      {entry.isHomeLink ? <i className="icon icon-home" /> : null}
+      {entry.icon ? <i className={`icon icon-${entry.icon}`} /> : null}
       {entry.text}
     </a>
   );
