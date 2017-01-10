@@ -58,7 +58,7 @@ const App = (props, context) => {
         render={({ params }) => (<List type="catfood" slug={params.brand} data={catfood} sortedBy="price" sortDirection="up" />)}
       />
 
-      <Match pattern="/cats/:breed/:catName" render={({ params }) => <Detail slug={params.catName} data={cats} />} />
+      <Match pattern="/cats/:breed/:catName" render={({ params }) => <Detail slug={params.catName} data={cats} displayRelated />} />
 
       <Match pattern="/search/:term" render={({ params }) => <SearchResult term={params.term} data={cats} />} />
 
