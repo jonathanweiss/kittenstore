@@ -19,7 +19,8 @@ class Contact extends React.Component {
   render() {
     return (
       <div className="columns">
-        { this.state.modifiedContent ? <NavigationPrompt message={location => (`Are you sure you want to go to ${location.pathname}`)} /> : null }
+        { /* this.state.modifiedContent ? <NavigationPrompt message={location => (`Are you sure you want to go to ${location.pathname}`)} /> : null */ }
+        <NavigationPrompt when={this.state.modifiedContent} message={location => (`Are you sure you want to go to ${location.pathname}`)} />
         <div className="column col-12">
           <h2>Contact us</h2>
           <form>
