@@ -15,7 +15,7 @@ const SHOW_ALL_COMPONENTS = true;
 
 const App = (props) => {
   if (SHOW_ALL_COMPONENTS) {
-    const { categories, products } = props.data;
+    const { navigation, categories, products } = props.data;
     const { cats } = products;
 
     return (
@@ -28,7 +28,7 @@ const App = (props) => {
         <hr />
         <Contact />
         <hr />
-        <Navigation />
+        <Navigation activePath="/" items={navigation} />
         <hr />
         <SearchResult term="el" data={cats} />
         <hr />
