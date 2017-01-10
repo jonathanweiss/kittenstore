@@ -71,7 +71,9 @@ const Detail = (props, context) => {
       </div>
       { displayRelated ? <Match
         pattern="/cats/:breed/:catName" render={() => {
-          const relatedProducts = data.filter(cat => cat.breed === catData.breed);
+          const relatedProducts = data
+            .filter(cat => cat.breed === catData.breed)
+            .filter(cat => cat.slug !== catData.slug);
 
           return relatedProducts.length > 2 ? (
             <div>
