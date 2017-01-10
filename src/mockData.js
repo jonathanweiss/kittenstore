@@ -3,7 +3,7 @@ const data = {
     {
       text: '',
       link: '/',
-      isHomeLink: true,
+      icon: 'home',
     },
     {
       text: 'Cats',
@@ -22,7 +22,8 @@ const data = {
       link: '/contact',
     },
     {
-      text: 'Shopping Cart',
+      text: '',
+      icon: 'cart',
       link: '/cart',
     },
   ],
