@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Navigation from './Navigation';
 import Detail from './Detail';
 
 const Homepage = (props) => {
@@ -18,7 +17,6 @@ const Homepage = (props) => {
 
   return (
     <div>
-      <Navigation items={props.data.navigation} activePath="/" />
       <div className="columns">
         <div className="column col-12">
           <h1>KittenStore</h1>

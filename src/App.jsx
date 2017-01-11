@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React from 'react';
 import Homepage from './components/Homepage';
 
@@ -11,13 +13,14 @@ import List from './components/List';
 import Navigation from './components/Navigation';
 import SearchResult from './components/SearchResult';
 
-const SHOW_ALL_COMPONENTS = true;
+// Toggle this flag to see all components
+const SHOW_ALL_COMPONENTS = false;
 
 const App = (props) => {
-  if (SHOW_ALL_COMPONENTS) {
-    const { navigation, categories, products } = props.data;
-    const { cats } = products;
+  const { navigation, categories, products } = props.data;
+  const { cats } = products;
 
+  if (SHOW_ALL_COMPONENTS) {
     return (
       <div>
         <About />
@@ -45,7 +48,12 @@ const App = (props) => {
       </div>
     );
   } else { // eslint-disable-line
-    return (<Homepage amountOfProducts={2} data={props.data} />);
+    return (
+      <div>
+        <Navigation items={navigation} activePath="/" />
+        <Homepage amountOfProducts={2} data={props.data} />
+      </div>
+    );
   }
 };
 
@@ -54,3 +62,5 @@ App.propTypes = {
 };
 
 export default App;
+
+/* eslint-enable no-unused-vars */
