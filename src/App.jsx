@@ -18,12 +18,12 @@ const getFirstPartOfPath = (pathname) => {
 };
 
 const App = (props, context) => {
-  const { categories, products } = props.data;
+  const { categories, products, navigationData } = props.data;
   const { cats, catfood } = products;
 
   return (
     <div>
-      <Navigation activePath={getFirstPartOfPath(context.location.pathname)} items={props.data.navigation} />
+      <Navigation activePath={getFirstPartOfPath(context.location.pathname)} items={navigationData} />
 
       <Match exactly pattern="/about" component={About} />
       <Match exactly pattern="/contact" component={Contact} />
