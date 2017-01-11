@@ -11,7 +11,8 @@ const Detail = (props) => {
   const { age, gender, price, weight } = catData;
 
   const renderMiniView = () => {
-    const link = showDetails ? <span>{catData.name}</span> : <a href="#">{catData.name}</a>;
+    // We'll remove the hashes when we integrate react-router ;)
+    const link = showDetails ? <span>{catData.name}</span> : <a href="#">{catData.name}</a>; // eslint-disable-line jsx-a11y/href-no-hash
 
     return (
       <div>
