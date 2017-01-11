@@ -17,7 +17,7 @@ import SearchResult from './components/SearchResult';
 const SHOW_ALL_COMPONENTS = false;
 
 const App = (props) => {
-  const { navigation, categories, products } = props.data;
+  const { navigationData, categories, products } = props.data;
   const { cats } = products;
 
   if (SHOW_ALL_COMPONENTS) {
@@ -31,7 +31,7 @@ const App = (props) => {
         <hr />
         <Contact />
         <hr />
-        <Navigation activePath="/" items={navigation} />
+        <Navigation activePath="/" items={navigationData} />
         <hr />
         <SearchResult term="el" data={cats} />
         <hr />
@@ -50,7 +50,7 @@ const App = (props) => {
   } else { // eslint-disable-line
     return (
       <div>
-        <Navigation items={navigation} activePath="/" />
+        <Navigation items={navigationData} activePath="/" />
         <Homepage amountOfProducts={2} data={props.data} />
       </div>
     );

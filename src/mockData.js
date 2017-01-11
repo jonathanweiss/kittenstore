@@ -1,5 +1,5 @@
 const data = {
-  navigation: [
+  navigationData: [
     {
       text: '',
       link: '/',
