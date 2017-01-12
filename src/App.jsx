@@ -23,7 +23,7 @@ const App = (props, context) => {
 
   return (
     <div>
-      <Navigation activePath={getFirstPartOfPath(context.location.pathname)} items={navigationData} />
+      <Navigation activePath={getFirstPartOfPath(context.history.location.pathname)} items={navigationData} />
 
       <Match exactly pattern="/about" component={About} />
       <Match exactly pattern="/contact" component={Contact} />
@@ -72,7 +72,7 @@ App.propTypes = {
 };
 
 App.contextTypes = {
-  location: React.PropTypes.object,
+  history: React.PropTypes.object,
 };
 
 export default App;

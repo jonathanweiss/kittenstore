@@ -12,7 +12,7 @@ const Detail = (props, context) => {
   const { age, gender, price, weight } = catData;
 
   const renderMiniView = () => {
-    const linkTarget = [...context.location.pathname.split('/')];
+    const linkTarget = [...context.history.location.pathname.split('/')];
     linkTarget.pop();
     linkTarget.push(catData.slug);
 
@@ -101,7 +101,7 @@ Detail.propTypes = {
 };
 
 Detail.contextTypes = {
-  location: React.PropTypes.object,
+  history: React.PropTypes.object,
 };
 
 Detail.defaultProps = {

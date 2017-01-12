@@ -69,7 +69,7 @@ const renderEmpty = (slug, type) => (
 
 const List = (props, context) => {
   const { slug, type, sortedBy, sortDirection } = props;
-  const { pathname } = context.location;
+  const { pathname } = context.history.location;
   let products = props.data.filter(product => product.breedSlug === slug);
 
   if (sortedBy) {
@@ -93,7 +93,7 @@ List.propTypes = {
 };
 
 List.contextTypes = {
-  location: React.PropTypes.object,
+  history: React.PropTypes.object,
 };
 
 export default List;
