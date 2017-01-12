@@ -10,7 +10,7 @@ const renderProduct = (name, slug, provideImageSource) => (
 );
 
 const Category = (props) => {
-  const provideImageSource = props.desc === 'cats' ?
+  const provideImageSource = props.desc === 'Cats' ?
     index => `https://placekitten.com/200/200?image=${index}` :
     () => 'https://dummyimage.com/200x200/999/000.png';
 
