@@ -3,7 +3,7 @@ import React from 'react';
 import Detail from './Detail';
 
 const Homepage = (props) => {
-  const catData = props.data.products.cats;
+  const catData = props.data;
   const randomCats = [];
 
   const getRandomCat = () => {
@@ -40,7 +40,7 @@ const Homepage = (props) => {
 };
 
 Homepage.propTypes = {
-  data: React.PropTypes.object,
+  data: React.PropTypes.array,
   amountOfProducts: React.PropTypes.number,
 };
 

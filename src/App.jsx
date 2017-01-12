@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 
 import React from 'react';
-import Homepage from './components/Homepage';
 
+import Homepage from './components/Homepage';
 import About from './components/About';
 import Cart from './components/Cart';
 import Category from './components/Category';
@@ -51,7 +51,7 @@ const App = (props) => {
     return (
       <div>
         <Navigation items={navigationData} activePath="/" />
-        <Homepage amountOfProducts={2} data={props.data} />
+        <Homepage amountOfProducts={2} data={cats} />
       </div>
     );
   }
