@@ -199,3 +199,5 @@ export const getRandomQuote = () => {
   const index = Math.round(Math.random() * quotes.length);
   return quotes[index];
 };
+
+export default getRandomQuote;

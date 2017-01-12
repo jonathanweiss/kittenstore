@@ -5,7 +5,8 @@
         "react"
     ],
     "globals": {
-      "document": true
+      "document": true,
+      "it": true
     },
     "rules": {
       "react/forbid-prop-types": [0],
