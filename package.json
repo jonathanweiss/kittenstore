@@ -10,6 +10,7 @@
     "eslint-plugin-react": "^6.8.0",
     "react-scripts": "0.8.4"
   },
+  "homepage": "http://jonathanweiss.net/kittenstore",
   "dependencies": {
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
