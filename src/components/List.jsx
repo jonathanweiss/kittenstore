@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 const headers = ['Name', 'Age', 'Weight', 'Gender', 'Price'];
 
@@ -67,9 +68,8 @@ const renderEmpty = (slug, type) => (
   </div>
 );
 
-const List = (props, context) => {
-  const { slug, type, sortedBy, sortDirection } = props;
-  const { pathname } = context.history.location;
+const List = (props) => {
+  const { slug, type, sortedBy, sortDirection, pathname } = props;
   let products = props.data.filter(product => product.breedSlug === slug);
 
   if (sortedBy) {
@@ -92,8 +92,8 @@ List.propTypes = {
   sortDirection: React.PropTypes.string,
 };
 
-List.contextTypes = {
-  history: React.PropTypes.object,
-};
+const mapStateToProps = state => ({
+  pathname: state.router.location.pathname,
+});
 
-export default List;
+export default connect(mapStateToProps)(List);

@@ -1,18 +1,19 @@
 import React from 'react';
 import { Link, Match } from 'react-router';
+import { connect } from 'react-redux';
 
 import { getRandomQuote } from '../tools/quotes';
 
-const Detail = (props, context) => {
+const Detail = (props) => {
   const quote = getRandomQuote();
-  const { slug, data, showDetails, displayRelated } = props;
+  const { slug, data, showDetails, displayRelated, pathname } = props;
 
   const catIndex = data.findIndex(cat => cat.slug === slug);
   const catData = data[catIndex];
   const { age, gender, price, weight } = catData;
 
   const renderMiniView = () => {
-    const linkTarget = [...context.history.location.pathname.split('/')];
+    const linkTarget = [...pathname.split('/')];
     linkTarget.pop();
     linkTarget.push(catData.slug);
 
@@ -79,9 +80,9 @@ const Detail = (props, context) => {
             <div>
               <h3>Related products</h3>
               <div className="columns">
-                <Detail slug={relatedProducts[0].slug} data={data} showDetails={false} />
-                <Detail slug={relatedProducts[1].slug} data={data} showDetails={false} />
-                <Detail slug={relatedProducts[2].slug} data={data} showDetails={false} />
+                <Detail slug={relatedProducts[0].slug} data={data} showDetails={false} pathname={pathname} />
+                <Detail slug={relatedProducts[1].slug} data={data} showDetails={false} pathname={pathname} />
+                <Detail slug={relatedProducts[2].slug} data={data} showDetails={false} pathname={pathname} />
               </div>
             </div>
           ) : null;
@@ -98,10 +99,7 @@ Detail.propTypes = {
   data: React.PropTypes.array.isRequired,
   displayRelated: React.PropTypes.bool,
   showDetails: React.PropTypes.bool,
-};
-
-Detail.contextTypes = {
-  history: React.PropTypes.object,
+  pathname: React.PropTypes.string,
 };
 
 Detail.defaultProps = {
@@ -109,4 +107,8 @@ Detail.defaultProps = {
   showDetails: true,
 };
 
-export default Detail;
+const mapStateToProps = state => ({
+  pathname: state.router.location.pathname,
+});
+
+export default connect(mapStateToProps)(Detail);

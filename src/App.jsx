@@ -1,5 +1,6 @@
 import React from 'react';
 import { Match, Miss } from 'react-router';
+import { connect } from 'react-redux';
 
 import Homepage from './components/Homepage';
 import Error404 from './components/Error404';
@@ -17,13 +18,13 @@ const getFirstPartOfPath = (pathname) => {
   return (parts.length > 0) ? `/${parts[1]}` : '/';
 };
 
-const App = (props, context) => {
+const App = (props) => {
   const { categories, products, navigationData } = props.data;
   const { cats, catfood } = products;
 
   return (
     <div>
-      <Navigation activePath={getFirstPartOfPath(context.history.location.pathname)} items={navigationData} />
+      <Navigation activePath={getFirstPartOfPath(props.pathname)} items={navigationData} />
 
       <Match exactly pattern="/about" component={About} />
       <Match exactly pattern="/contact" component={Contact} />
@@ -69,10 +70,11 @@ const App = (props, context) => {
 
 App.propTypes = {
   data: React.PropTypes.object,
+  pathname: React.PropTypes.string,
 };
 
-App.contextTypes = {
-  history: React.PropTypes.object,
-};
+const mapStateToProps = state => ({
+  pathname: state.router.location.pathname,
+});
 
-export default App;
+export default connect(mapStateToProps)(App);

@@ -12,9 +12,14 @@
   },
   "homepage": "http://jonathanweiss.net/kittenstore",
   "dependencies": {
+    "connected-react-router": "^2.0.0-alpha.5",
+    "history": "^4.5.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-redux": "^5.0.2",
     "react-router": "^4.0.0-2",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^1.0.0",
     "spectre.css": "^0.1.31"
   },
   "scripts": {
