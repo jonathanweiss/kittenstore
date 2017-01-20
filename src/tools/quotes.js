@@ -196,6 +196,6 @@ const quotes = [
 ];
 
 export const getRandomQuote = () => {
-  const index = Math.round(Math.random() * quotes.length);
+  const index = Math.round(Math.random() * (quotes.length - 1));
   return quotes[index];
 };
