@@ -2,16 +2,31 @@ import React from 'react';
 
 const headers = ['Name', 'Age', 'Weight', 'Gender', 'Price'];
 
+// We'll remove the hashes when we integrate react-router ;)
+/* eslint-disable jsx-a11y/href-no-hash */
 const List = (props) => {
   const { slug, type, sortedBy, sortDirection, location } = props;
   let products = props.data.filter(product => product.breedSlug === slug);
 
-  const renderHeader = (text, direction) => (
-    <th key={text}>
-      <span>{text}</span>
-      {text.toLowerCase() === sortedBy ? <span className={`icon icon-arrow-${direction}2`} /> : null}
-    </th>
-  );
+  const renderHeader = (text) => {
+    const value = text.toLowerCase();
+    const arrowName = sortDirection === 'desc' ? 'down' : 'up';
+    let direction;
+
+    if (value === sortedBy) {
+      direction = sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      direction = 'asc';
+    }
+
+    return (
+      <th key={`${type}/${text}`}>
+        <a href="#">{text}</a>
+        {text.toLowerCase() === sortedBy ? <span className={`icon icon-arrow-${direction}2`} /> : null}
+        {value === sortedBy ? <span className={`icon icon-arrow-${arrowName}2`} /> : null}
+      </th>
+    );
+  };
 
   const renderProducts = () => (
     <div className="columns">
@@ -29,7 +44,7 @@ const List = (props) => {
 
               return (
                 <tr key={`${location.pathname}/${product.slug}`}>
-                  <td>{product.name}</td>
+                  <td><a href="#">{product.name}</a></td>
                   <td>{age} weeks</td>
                   <td>{weight} oz</td>
                   <td>{gender === 'male' ? '♂' : ' ♀'}</td>
@@ -50,12 +65,13 @@ const List = (props) => {
           <i className="icon icon-baffled" />
           <p className="empty-title">No product found for category &ldquo;{slug}&rdquo;.</p>
           <p className="empty-meta">Try a different category.</p>
-          <button className="empty-action btn btn-primary">Browse for products</button>
+          <a href="#">
+            <button className="empty-action btn btn-primary">Browse for products</button>
+          </a>
         </section>
       </div>
     </div>
   );
-
 
   if (sortedBy) {
     products = products.sort((a, b) => {
@@ -66,7 +82,7 @@ const List = (props) => {
     });
   }
 
-  return products.length ? renderProducts(products, sortedBy, sortDirection) : renderEmpty(slug, type);
+  return products.length ? renderProducts() : renderEmpty();
 };
 
 List.propTypes = {
@@ -83,3 +99,4 @@ List.defaultProps = {
 };
 
 export default List;
+/* eslint-enable jsx-a11y/href-no-hash */
