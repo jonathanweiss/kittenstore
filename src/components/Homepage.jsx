@@ -3,12 +3,12 @@ import React from 'react';
 import Detail from './Detail';
 
 const Homepage = (props) => {
-  const catData = props.data;
+  const cats = props.products;
   const randomCats = [];
 
   const getRandomCat = () => {
-    const index = Math.round(Math.random() * catData.length);
-    return catData[index];
+    const index = Math.round(Math.random() * cats.length);
+    return cats[index];
   };
 
   for (let i = 0; i < props.amountOfProducts; i += 1) {
@@ -31,7 +31,7 @@ const Homepage = (props) => {
         </div>
         {randomCats.map(cat => (
           <div className={`column col-${12 / props.amountOfProducts}`} key={cat.slug}>
-            <Detail slug={cat.slug} data={catData} />
+            <Detail slug={cat.slug} data={cats} />
           </div>
         ))}
       </div>
@@ -40,7 +40,7 @@ const Homepage = (props) => {
 };
 
 Homepage.propTypes = {
-  data: React.PropTypes.array,
+  products: React.PropTypes.array,
   amountOfProducts: React.PropTypes.number,
 };
 
