@@ -25,7 +25,7 @@ const startSearch = (textboxRef) => {
   }
 };
 
-const Navigation = (props, context) => {
+const Navigation = (props) => {
   const { activePath } = props;
   let textboxRef = null;
 
