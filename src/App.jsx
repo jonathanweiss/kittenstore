@@ -29,7 +29,7 @@ const App = (props, context) => {
       <Match exactly pattern="/contact" component={Contact} />
       <Match exactly pattern="/cart" component={Cart} />
 
-      <Match exactly pattern="/" render={() => <Homepage amountOfProducts={3} data={props.data} />} />
+      <Match exactly pattern="/" render={() => <Homepage amountOfProducts={3} products={cats} />} />
       <Match exactly pattern="/catfood" render={() => <Category desc={categories.catfood.desc} items={categories.catfood.items} />} />
       <Match exactly pattern="/cats" render={() => <Category desc={categories.cats.desc} items={categories.cats.items} />} />
 
