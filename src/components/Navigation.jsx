@@ -1,7 +1,8 @@
 import React from 'react';
 
-// We'll remove the hashes when we integrate react-router ;)
+// We'll remove the warnings when we integrate react-router ;)
 /* eslint-disable jsx-a11y/href-no-hash */
+/* eslint-disable no-unused-vars */
 const renderNavItem = (entry, activePath) => {
   const cssClasses = [
     'btn',
@@ -17,7 +18,7 @@ const renderNavItem = (entry, activePath) => {
   );
 };
 
-const startSearch = (textboxRef) => {
+const startSearch = (textboxRef, transitionTo) => {
   const term = textboxRef.value;
 
   if (term.length > 0) {
@@ -25,8 +26,9 @@ const startSearch = (textboxRef) => {
   }
 };
 
-const Navigation = (props) => {
+const Navigation = (props, context) => {
   const { activePath } = props;
+  const transitionTo = () => {};
   let textboxRef = null;
 
   /* eslint-disable no-return-assign */
@@ -38,7 +40,7 @@ const Navigation = (props) => {
       <section className="navbar-section">
         <div className="input-group input-inline">
           <input className="form-input" type="text" placeholder="search" ref={ref => textboxRef = ref} />
-          <button className="btn btn-primary input-group-btn" onClick={() => startSearch(textboxRef)}>Search</button>
+          <button className="btn btn-primary input-group-btn" onClick={() => startSearch(textboxRef, transitionTo)}>Search</button>
         </div>
       </section>
     </header>
@@ -56,5 +58,10 @@ Navigation.defaultProps = {
   activePath: '/',
 };
 
+Navigation.contextTypes = {
+  router: React.PropTypes.object,
+};
+
 export default Navigation;
 /* eslint-enable jsx-a11y/href-no-hash */
+/* eslint-enable no-unused-vars */
