@@ -3,7 +3,7 @@ import React from 'react';
 const headers = ['Name', 'Age', 'Weight', 'Gender', 'Price'];
 
 const List = (props) => {
-  const { slug, type, sortedBy, sortDirection } = props;
+  const { slug, type, sortedBy, sortDirection, location } = props;
   let products = props.data.filter(product => product.breedSlug === slug);
 
   const renderHeader = (text, direction) => (
@@ -28,7 +28,7 @@ const List = (props) => {
               const { age, weight, gender, price } = product;
 
               return (
-                <tr key={product.slug}>
+                <tr key={`${location.pathname}/${product.slug}`}>
                   <td>{product.name}</td>
                   <td>{age} weeks</td>
                   <td>{weight} oz</td>
@@ -73,12 +73,13 @@ List.propTypes = {
   slug: React.PropTypes.string.isRequired,
   type: React.PropTypes.string.isRequired,
   data: React.PropTypes.array.isRequired,
+  location: React.PropTypes.object,
   sortedBy: React.PropTypes.string,
   sortDirection: React.PropTypes.string,
 };
 
-List.contextTypes = {
-  location: React.PropTypes.object,
+List.defaultProps = {
+  location: { pathname: '' },
 };
 
 export default List;
