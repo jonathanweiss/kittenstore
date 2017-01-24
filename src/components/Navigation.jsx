@@ -51,6 +51,11 @@ Navigation.propTypes = {
   activePath: React.PropTypes.string,
 };
 
+Navigation.defaultProps = {
+  items: [],
+  activePath: '/',
+};
+
 Navigation.contextTypes = {
   router: React.PropTypes.object,
 };
