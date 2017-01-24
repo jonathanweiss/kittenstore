@@ -41,6 +41,8 @@ const App = (props) => {
         <hr />
         <List type="cats" slug="javanese" data={cats} sortedBy="name" sortDirection="asc" />
         <hr />
+        <List type="cats" slug="zzzzzzzzz" data={cats} sortedBy="name" sortDirection="asc" />
+        <hr />
         <Detail slug="twinkle" data={cats} />
         <hr />
         <Detail slug="snickers" data={cats} showDetails={false} />
@@ -51,7 +53,7 @@ const App = (props) => {
     return (
       <div>
         <Navigation items={navigationData} activePath="/" />
-        <Homepage amountOfProducts={2} data={cats} />
+        <Homepage amountOfProducts={2} products={cats} />
       </div>
     );
   }
