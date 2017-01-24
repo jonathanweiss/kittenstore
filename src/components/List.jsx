@@ -2,59 +2,60 @@ import React from 'react';
 
 const headers = ['Name', 'Age', 'Weight', 'Gender', 'Price'];
 
-const renderHeader = (text, sortedBy, direction) => (
-  <th key={text}>
-    <span>{text}</span>
-    {text.toLowerCase() === sortedBy ? <span className={`icon icon-arrow-${direction}2`} /> : null}
-  </th>
-);
-
-const renderProducts = (products, sortedBy, sortDirection) => (
-  <div className="columns">
-    <div className="column col-12">
-      <h2>All &ldquo;{products[0].breed}&rdquo;</h2>
-      <table className="table table-striped table-hover">
-        <thead>
-          <tr>
-            {headers.map(text => renderHeader(text, sortedBy, sortDirection === 'desc' ? 'down' : 'up'))}
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => {
-            const { age, weight, gender, price } = product;
-
-            return (
-              <tr key={product.slug}>
-                <td>{product.name}</td>
-                <td>{age} weeks</td>
-                <td>{weight} oz</td>
-                <td>{gender === 'male' ? '♂' : ' ♀'}</td>
-                <td>${price}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-  </div>
-);
-
-const renderEmpty = slug => (
-  <div className="columns">
-    <div className="column col-12">
-      <section className="empty">
-        <i className="icon icon-baffled" />
-        <p className="empty-title">No product found for category &ldquo;{slug}&rdquo;.</p>
-        <p className="empty-meta">Try a different category.</p>
-        <button className="empty-action btn btn-primary">Browse for products</button>
-      </section>
-    </div>
-  </div>
-);
-
 const List = (props) => {
   const { slug, type, sortedBy, sortDirection } = props;
   let products = props.data.filter(product => product.breedSlug === slug);
+
+  const renderHeader = (text, direction) => (
+    <th key={text}>
+      <span>{text}</span>
+      {text.toLowerCase() === sortedBy ? <span className={`icon icon-arrow-${direction}2`} /> : null}
+    </th>
+  );
+
+  const renderProducts = () => (
+    <div className="columns">
+      <div className="column col-12">
+        <h2>All &ldquo;{products[0].breed}&rdquo;</h2>
+        <table className="table table-striped table-hover">
+          <thead>
+            <tr>
+              {headers.map(text => renderHeader(text, sortedBy, sortDirection === 'desc' ? 'down' : 'up'))}
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => {
+              const { age, weight, gender, price } = product;
+
+              return (
+                <tr key={product.slug}>
+                  <td>{product.name}</td>
+                  <td>{age} weeks</td>
+                  <td>{weight} oz</td>
+                  <td>{gender === 'male' ? '♂' : ' ♀'}</td>
+                  <td>${price}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+
+  const renderEmpty = () => (
+    <div className="columns">
+      <div className="column col-12">
+        <section className="empty">
+          <i className="icon icon-baffled" />
+          <p className="empty-title">No product found for category &ldquo;{slug}&rdquo;.</p>
+          <p className="empty-meta">Try a different category.</p>
+          <button className="empty-action btn btn-primary">Browse for products</button>
+        </section>
+      </div>
+    </div>
+  );
+
 
   if (sortedBy) {
     products = products.sort((a, b) => {
