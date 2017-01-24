@@ -42,11 +42,12 @@ const App = (props, context) => {
 
           return (
             <List
-              type="cats"
               slug={params.breed}
-              data={cats}
               sortedBy={sortedBy}
               sortDirection={sortDirection}
+              pathname={location.pathname}
+              data={cats}
+              type="cats"
             />
           );
         }}

@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const headers = ['Name', 'Age', 'Weight', 'Gender', 'Price'];
 
 const List = (props) => {
-  const { slug, type, sortedBy, sortDirection, location } = props;
+  const { slug, type, sortedBy, sortDirection, pathname } = props;
   let products = props.data.filter(product => product.breedSlug === slug);
 
   const renderHeader = (text) => {
@@ -42,8 +42,8 @@ const List = (props) => {
               const { age, weight, gender, price } = product;
 
               return (
-                <tr key={`${location.pathname}/${product.slug}`}>
-                  <td><Link to={`${location.pathname}/${product.slug}`}>{product.name}</Link></td>
+                <tr key={`${product.slug}`}>
+                  <td><Link to={`${pathname}/${product.slug}`}>{product.name}</Link></td>
                   <td>{age} weeks</td>
                   <td>{weight} oz</td>
                   <td>{gender === 'male' ? '♂' : ' ♀'}</td>
@@ -91,10 +91,6 @@ List.propTypes = {
   location: React.PropTypes.object,
   sortedBy: React.PropTypes.string,
   sortDirection: React.PropTypes.string,
-};
-
-List.defaultProps = {
-  location: { pathname: '' },
 };
 
 export default List;
