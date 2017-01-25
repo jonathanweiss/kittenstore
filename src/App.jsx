@@ -31,6 +31,81 @@ const App = (props, context) => {
       <Match exactly pattern="/contact" component={Contact} />
       <Match exactly pattern="/cart" component={Cart} />
 
+      <Match
+        pattern="/"
+        exactly
+        render={() => (
+          <Homepage
+            amountOfProducts={2}
+            products={cats}
+          />
+        )}
+      />
+
+      <Match
+        pattern="/catfood"
+        exactly
+        render={() => (
+          <Category
+            desc={categories.catfood.desc}
+            items={categories.catfood.items}
+          />
+        )}
+      />
+
+      <Match
+        pattern="/cats"
+        exactly
+        render={() => {
+          const { desc, items } = categories.cats;
+          return (
+            <Category desc={desc} items={items} />
+          );
+        }}
+      />
+
+      <Match
+        pattern="/search/:term"
+        exactly
+        render={({ params }) => (
+          <SearchResult
+            term={params.term}
+            data={cats}
+          />
+        )}
+      />
+
+      <Match
+        pattern="/cats/:breed"
+        exactly
+        render={({ params, location }) => {
+          const { sortedBy, sortDirection } = location.query ? location.query : { sortedBy: null, sortDirection: null };
+
+          return (
+            <List
+              slug={params.breed}
+              pathname={location.pathname}
+              sortedBy={sortedBy}
+              sortDirection={sortDirection}
+              type="cats"
+              data={cats}
+            />
+          );
+        }}
+      />
+
+      <Match
+        pattern="/cats/:breed/:catName"
+        exactly
+        render={({ params }) => (
+          <Detail
+            data={cats}
+            slug={params.catName}
+          />
+        )}
+      />
+
+
       <Miss component={Error404} />
     </div>
   );
