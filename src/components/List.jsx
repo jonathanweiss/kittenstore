@@ -43,7 +43,7 @@ const List = (props) => {
               const { age, weight, gender, price } = product;
 
               return (
-                <tr key={`${location.pathname}/${product.slug}`}>
+                <tr key={`${location}/${product.slug}`}>
                   <td><a href="#">{product.name}</a></td>
                   <td>{age} weeks</td>
                   <td>{weight} oz</td>
@@ -95,7 +95,7 @@ List.propTypes = {
 };
 
 List.defaultProps = {
-  location: { pathname: '' },
+  location: '',
 };
 
 export default List;
