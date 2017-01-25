@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link, Match } from 'react-router';
 
 import { getRandomQuote } from '../tools/quotes';
 
-const Detail = (props) => {
+const Detail = (props, context) => {
   const quote = getRandomQuote();
   const { slug, data, showDetails, displayRelated } = props;
 
@@ -11,8 +12,11 @@ const Detail = (props) => {
   const { age, gender, price, weight } = catData;
 
   const renderMiniView = () => {
-    // We'll remove the hashes when we integrate react-router ;)
-    const link = showDetails ? <span>{catData.name}</span> : <a href="#">{catData.name}</a>; // eslint-disable-line jsx-a11y/href-no-hash
+    const linkTarget = context.history.location.pathname.split('/');
+    linkTarget.pop();
+    linkTarget.push(catData.slug);
+
+    const link = showDetails ? <span>{catData.name}</span> : <Link to={linkTarget.join('/')}>{catData.name}</Link>;
 
     return (
       <div>
@@ -65,22 +69,36 @@ const Detail = (props) => {
           </div>
         </div>
       </div>
-      { displayRelated ? () => {
-        const relatedProducts = data
+      { displayRelated ? <Match
+        pattern="/cats/:breed/:catName" render={() => {
+          const related = data
             .filter(cat => cat.breed === catData.breed)
             .filter(cat => cat.slug !== catData.slug);
 
-        return relatedProducts.length > 2 ? (
-          <div>
-            <h3>Related products</h3>
-            <div className="columns">
-              <Detail slug={relatedProducts[0].slug} data={data} showDetails={false} />
-              <Detail slug={relatedProducts[1].slug} data={data} showDetails={false} />
-              <Detail slug={relatedProducts[2].slug} data={data} showDetails={false} />
+          return related.length > 2 ? (
+            <div>
+              <h3>Related products</h3>
+              <div className="columns">
+                <Detail
+                  slug={related[0].slug}
+                  data={data}
+                  showDetails={false}
+                />
+                <Detail
+                  slug={related[1].slug}
+                  data={data}
+                  showDetails={false}
+                />
+                <Detail
+                  slug={related[2].slug}
+                  data={data}
+                  showDetails={false}
+                />
+              </div>
             </div>
-          </div>
           ) : null;
-      } : null }
+        }}
+      /> : null }
     </div>
   );
 
@@ -94,8 +112,12 @@ Detail.propTypes = {
   showDetails: React.PropTypes.bool,
 };
 
+Detail.contextTypes = {
+  history: React.PropTypes.object,
+};
+
 Detail.defaultProps = {
-  displayRelated: false,
+  displayRelated: true,
   showDetails: true,
 };
 
