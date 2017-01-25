@@ -89,7 +89,7 @@ List.propTypes = {
   slug: React.PropTypes.string.isRequired,
   type: React.PropTypes.string.isRequired,
   data: React.PropTypes.array.isRequired,
-  location: React.PropTypes.object,
+  location: React.PropTypes.string,
   sortedBy: React.PropTypes.string,
   sortDirection: React.PropTypes.string,
 };
