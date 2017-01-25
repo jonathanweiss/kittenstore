@@ -10,7 +10,7 @@
     "eslint-plugin-react": "^6.8.0",
     "react-scripts": "0.8.4"
   },
-  "homepage": "http://jonathanweiss.net/kittenstore",
+  "homepage": "http://jonathanweiss.net/kittenstore-redux",
   "dependencies": {
     "connected-react-router": "^2.0.0-alpha.5",
     "history": "^4.5.1",
