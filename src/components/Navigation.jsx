@@ -26,13 +26,13 @@ const startSearch = (textboxRef, transitionTo) => {
   const term = textboxRef.value;
 
   if (term.length > 0) {
-    // perform search
+    transitionTo(`/search/${term}`);
   }
 };
 
 const Navigation = (props, context) => {
   const { activePath } = props;
-  const transitionTo = () => {};
+  const { transitionTo } = context.router;
   let textboxRef = null;
 
   /* eslint-disable no-return-assign */
