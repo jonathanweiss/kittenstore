@@ -1,18 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-// We'll remove the hashes when we integrate react-router ;)
-/* eslint-disable jsx-a11y/href-no-hash */
 const renderProduct = (name, slug, type, provideImageSource) => (
   <div key={slug} className="product--item">
-    <a href="#" key={`/${type}/${slug}`}>
+    <Link to={`/${type}/${slug}`}>
       <figure>
         <img width="200" height="200" src={provideImageSource()} alt={name} />
         <figcaption>{name}</figcaption>
       </figure>
-    </a>
+    </Link>
   </div>
 );
-/* eslint-enable jsx-a11y/href-no-hash */
 
 const Category = (props) => {
   const type = props.desc.toLowerCase().split(' ').join('');
