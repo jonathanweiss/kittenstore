@@ -1,9 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const headers = ['Name', 'Age', 'Weight', 'Gender', 'Price'];
 
-// We'll remove the hashes when we integrate react-router ;)
-/* eslint-disable jsx-a11y/href-no-hash */
 const List = (props) => {
   const { slug, type, sortedBy, sortDirection, pathname } = props;
   let products = props.data.filter(product => product.breedSlug === slug);
@@ -20,9 +19,8 @@ const List = (props) => {
     }
 
     return (
-      <th key={`${type}/${text}`}>
-        <a href="#">{text}</a>
-        {text.toLowerCase() === sortedBy ? <span className={`icon icon-arrow-${direction}2`} /> : null}
+      <th key={`${value}/${text}`}>
+        <Link to={`?sortedBy=${value}&sortDirection=${direction}`}>{text}</Link>
         {value === sortedBy ? <span className={`icon icon-arrow-${arrowName}2`} /> : null}
       </th>
     );
@@ -43,8 +41,12 @@ const List = (props) => {
               const { age, weight, gender, price } = product;
 
               return (
-                <tr key={`${pathname}/${product.slug}`}>
-                  <td><a href="#">{product.name}</a></td>
+                <tr key={product.slug}>
+                  <td>
+                    <Link to={`${pathname}/${product.slug}`}>
+                      {product.name}
+                    </Link>
+                  </td>
                   <td>{age} weeks</td>
                   <td>{weight} oz</td>
                   <td>{gender === 'male' ? '♂' : ' ♀'}</td>
@@ -65,9 +67,11 @@ const List = (props) => {
           <i className="icon icon-baffled" />
           <p className="empty-title">No product found for category &ldquo;{slug}&rdquo;.</p>
           <p className="empty-meta">Try a different category.</p>
-          <a href="#">
-            <button className="empty-action btn btn-primary">Browse for products</button>
-          </a>
+          <Link to={`/${type}`}>
+            <button className="empty-action btn btn-primary">
+              Browse for products
+            </button>
+          </Link>
         </section>
       </div>
     </div>
@@ -99,4 +103,3 @@ List.defaultProps = {
 };
 
 export default List;
-/* eslint-enable jsx-a11y/href-no-hash */
