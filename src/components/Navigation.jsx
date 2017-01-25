@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 // We'll remove the warnings when we integrate react-router ;)
-/* eslint-disable jsx-a11y/href-no-hash */
 /* eslint-disable no-unused-vars */
 const renderNavItem = (entry, activePath) => {
   const cssClasses = [
@@ -11,10 +11,14 @@ const renderNavItem = (entry, activePath) => {
   ];
 
   return (
-    <a href="#" className={cssClasses.join(' ')} key={entry.link}>
+    <Link
+      to={entry.link}
+      className={cssClasses.join(' ')}
+      key={entry.link}
+    >
       {entry.icon ? <i className={`icon icon-${entry.icon}`} /> : null}
       {entry.text}
-    </a>
+    </Link>
   );
 };
 
@@ -63,5 +67,4 @@ Navigation.contextTypes = {
 };
 
 export default Navigation;
-/* eslint-enable jsx-a11y/href-no-hash */
 /* eslint-enable no-unused-vars */

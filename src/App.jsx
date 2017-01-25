@@ -14,12 +14,19 @@ import List from './components/List';
 import Navigation from './components/Navigation';
 import SearchResult from './components/SearchResult';
 
-const App = (props) => {
+const App = (props, context) => {
   const { navigationData, categories, products } = props.data;
   const { cats } = products;
 
+  const pathParts = context.history.location.pathname.split('/');
+
   return (
     <div>
+      <Navigation
+        items={navigationData}
+        activePath={`/${pathParts[1]}`}
+      />
+
       <Match exactly pattern="/about" component={About} />
       <Match exactly pattern="/contact" component={Contact} />
       <Match exactly pattern="/cart" component={Cart} />
@@ -31,6 +38,10 @@ const App = (props) => {
 
 App.propTypes = {
   data: React.PropTypes.object,
+};
+
+App.contextTypes = {
+  history: React.PropTypes.object,
 };
 
 export default App;
